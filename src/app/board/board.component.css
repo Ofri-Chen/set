@@ -1,13 +1,13 @@
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
 .card {
     width: 25%;
-    height: 200px;
+    height: 150px;
     border: solid 5px;
     margin: 0.5%;
 }
@@ -16,5 +16,8 @@
     border-color: blue;
 }
 
-
+.score {
+    margin: auto;
+    font-size: 300%;
+}
 
