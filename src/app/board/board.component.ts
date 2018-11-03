@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../../models/card';
+import { CardsService } from '../services/cards.service';
 
 @Component({
 	selector: 'app-board',
@@ -7,12 +8,11 @@ import { Card } from '../../models/card';
 	styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-	cards: Card[] = [];
+	deck: Card[] = [];
 
-	constructor() { }
+	constructor(private cardsService: CardsService) { }
 
 	ngOnInit() {
-		
+		this.deck = this.cardsService.generateDeck();
 	}
-
 }

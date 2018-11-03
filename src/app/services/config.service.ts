@@ -10,7 +10,6 @@ export class ConfigService {
 	constructor(private http: HttpClient) { }
 
 	public load(): Promise<any> {
-		console.log('config service');
 		let configObservable: Observable<any> = this.http.get(`assets/config/config.json`);
 		configObservable.subscribe((config: IConfig) => {
 			this.config = config;
