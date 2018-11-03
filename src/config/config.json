@@ -1,0 +1,17 @@
+{
+    "colors": [
+        "red",
+        "green",
+        "purple"
+    ],
+    "types": [
+        "type1",
+        "type2",
+        "type3"
+    ],
+    "amounts": [
+        1,
+        2,
+        3
+    ]
+}
