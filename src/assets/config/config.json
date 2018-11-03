@@ -1,17 +1,29 @@
 {
-    "colors": [
-        "red",
-        "green",
-        "purple"
-    ],
-    "types": [
-        "type1",
-        "type2",
-        "type3"
-    ],
-    "amounts": [
-        1,
-        2,
-        3
-    ]
+    "game": {
+        "startingCards": 12,
+        "cardsToAddOnDemand": 3,
+        "cardsPerSet": 3
+    },
+    "cards": {
+        "colors": [
+            "red",
+            "green",
+            "purple"
+        ],
+        "filling": [
+            "empty",
+            "dashed",
+            "full"
+        ],
+        "types": [
+            "type-1",
+            "type-2",
+            "type-3"
+        ],
+        "amounts": [
+            1,
+            2,
+            3
+        ]
+    }
 }

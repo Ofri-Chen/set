@@ -1,7 +1,5 @@
-<ul>
-  <li *ngFor="let card of deck">
-    <span>{{card.color}}</span> 
-    <span>{{card.type}}</span>
-    <span>{{card.amount}}</span>
-  </li>
-</ul>
+<div class="cards-container">
+  <img *ngFor="let card of currentlyPlayedCards" 
+    class="card" [src]="getCardImageUrl(card)"
+    [class.selected]="card.isSelected" (click)="handleCardClick(card)">
+</div>

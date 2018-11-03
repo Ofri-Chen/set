@@ -8,6 +8,7 @@ import { BoardComponent } from './board/board.component';
 import { CardsService } from './services/cards.service';
 import { loadConfig, ConfigService } from './services/config.service';
 import { HttpClient } from '@angular/common/http';
+import { CardImageResolverService } from './services/card-image-resolver.service';
 
 
 
@@ -23,6 +24,7 @@ import { HttpClient } from '@angular/common/http';
   ],
   providers: [
     CardsService,
+    CardImageResolverService,
     ConfigService,
     {
       provide: APP_INITIALIZER,
