@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { CardsService } from './services/cards.service';
+import { loadConfig, ConfigService } from './services/config.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -15,9 +18,20 @@ import { CardsService } from './services/cards.service';
     BoardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [CardsService],
+  providers: [
+    CardsService,
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: loadConfig,
+      deps: [ConfigService],
+      multi: true
+    },
+    HttpClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
