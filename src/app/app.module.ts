@@ -9,6 +9,7 @@ import { CardsService } from './services/cards.service';
 import { loadConfig, ConfigService } from './services/config.service';
 import { HttpClient } from '@angular/common/http';
 import { CardImageResolverService } from './services/card-image-resolver.service';
+import { SetCheckingService } from './services/set-checking.service';
 
 
 
@@ -25,6 +26,7 @@ import { CardImageResolverService } from './services/card-image-resolver.service
   providers: [
     CardsService,
     CardImageResolverService,
+    SetCheckingService,
     ConfigService,
     {
       provide: APP_INITIALIZER,

@@ -11,7 +11,6 @@ export class SetCheckingService {
 		return properties.every(prop => this.isPropertySet(cards, prop));		
 	}
 
-
 	private isPropertySet(cards: Card[], prop: string) {
 		return this.isSamePropertyValue(cards, prop) || this.isDifferrentPropertyValue(cards, prop);
 	}

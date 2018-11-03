@@ -28,6 +28,7 @@ export class CardsService {
 							filling,
 							type,
 							amount,
+							isSelected: false
 						})
 					});
 				});

@@ -1,5 +1,5 @@
 <div class="cards-container">
-  <img *ngFor="let card of currentlyPlayedCards" 
+  <img *ngFor="let card of boardCards" 
     class="card" [src]="getCardImageUrl(card)"
     [class.selected]="card.isSelected" (click)="handleCardClick(card)">
 </div>
