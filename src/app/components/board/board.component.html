@@ -1,0 +1,17 @@
+<div class="game-info">
+  <div class="cards-count-container">
+    <img src="assets/deck-icon.png" class="deck-icon">
+    <div>{{deck.length}}</div>
+  </div>
+  <div class="time-container">
+    <div>time:</div>
+    <app-stopwatch></app-stopwatch>
+  </div>
+</div>
+
+<div class="cards-container">
+  <img *ngFor="let card of boardCards" class="card" [src]="getCardImageUrl(card)" [class.selected]="card.isSelected" (click)="handleCardClick(card)">
+</div>
+
+<button (click)="checkSets()">Check</button>
+<button (click)="endGame()">End Game</button>

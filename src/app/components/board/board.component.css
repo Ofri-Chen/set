@@ -16,8 +16,14 @@
     border-color: blue;
 }
 
-.score {
+.cards-count-container {
     margin: auto;
     font-size: 300%;
+    display: flex;
 }
 
+.deck-icon {
+    height: 7%;
+    width: 7%;
+    margin-right: 1%;
+}

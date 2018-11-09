@@ -4,20 +4,24 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { BoardComponent } from './board/board.component';
+import { BoardComponent } from './components/board/board.component';
 import { CardsService } from './services/cards.service';
 import { loadConfig, ConfigService } from './services/config.service';
 import { HttpClient } from '@angular/common/http';
 import { CardImageResolverService } from './services/card-image-resolver.service';
 import { SetCheckingService } from './services/set-checking.service';
-
-
+import { GameComponent } from './components/game/game.component';
+import { StopwatchComponent } from './components/stopwatch/stopwatch.component';
+import { TimePipe } from './pipes/time.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    GameComponent,
+    StopwatchComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,

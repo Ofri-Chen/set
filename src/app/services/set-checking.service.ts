@@ -16,9 +16,7 @@ export class SetCheckingService {
 	counter = 0;
 
 	public getAvailableSets(cards: Card[], amountOfCardsPerSet: number): Card[][] {
-		this.counter++;
-		return this.counter <= 1 ? [] :
-		 this.recursiveSetChecker(cards, [], amountOfCardsPerSet, 0);
+		return this.recursiveSetChecker(cards, [], amountOfCardsPerSet, 0);
 	}
 
 	public recursiveSetChecker(cards: Card[], currentCards: Card[],
