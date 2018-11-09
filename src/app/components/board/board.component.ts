@@ -17,6 +17,8 @@ export class BoardComponent implements OnInit {
 	boardCards: Card[] = [];
 	selectedCards: Card[] = [];
 	score: number = 0;
+	seconds: number = 0;
+
 	@Output('gameEnded') gameEndedEventEmitter = new EventEmitter();
 
 	constructor(private cardsService: CardsService,
@@ -30,6 +32,7 @@ export class BoardComponent implements OnInit {
 		this.deck = this.cardsService.generateDeck();
 		this.boardCards = this.deck.splice(0, this.gameConfig.startingCards);
 		this.manageSetsAvailability();
+		setInterval(() => this.seconds += 1, 1000);
 
 	}
 
@@ -62,11 +65,12 @@ export class BoardComponent implements OnInit {
 
 	handleSuccessfulSet() {
 		this.score++;
+		this.clearAllHighlights();
+		
 		if (!this.deck.length) {
 			this.endGame();
 		}
-
-
+		
 		if (this.boardCards.length == this.gameConfig.startingCards) {
 			this.selectedCards.forEach(setCard => {
 				let newCard: Card = this.deck.splice(0, 1)[0];
@@ -85,6 +89,10 @@ export class BoardComponent implements OnInit {
 		this.selectedCards = [];
 	}
 
+	clearAllHighlights() {
+		this.boardCards.forEach(card => card.isHighlighted = false);
+	}
+
 	handleUnsuccessfulSet() {
 		this.selectedCards.forEach(card => card.isSelected = false);
 	}
@@ -92,6 +100,14 @@ export class BoardComponent implements OnInit {
 	swapCardOnBoard(oldCard: Card, newCard: Card) {
 		let index = this.boardCards.findIndex(card => card === oldCard);
 		this.boardCards.splice(index, 1, newCard);
+	}
+
+	showSet() {
+		let availableSet = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet)[0];
+		availableSet.forEach(card => {
+			card.isSelected = false;
+			card.isHighlighted = true;
+		});
 	}
 
 	manageSetsAvailability() {
@@ -111,7 +127,7 @@ export class BoardComponent implements OnInit {
 
 	endGame() {
 		this.gameEndedEventEmitter.emit();
-	}	
+	}
 
 	checkSets() {
 		console.log(this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet));

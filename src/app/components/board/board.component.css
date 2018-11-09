@@ -16,14 +16,42 @@
     border-color: blue;
 }
 
-.cards-count-container {
-    margin: auto;
+.highlighted {
+    border-color: green;
+}
+
+.game-info {
+    display: flex;
     font-size: 300%;
+}
+
+.cards-count-container {
+    display: flex;
+    margin-left: 15%;
+    margin-right: 13%;
+}
+
+.time-container {
     display: flex;
 }
 
 .deck-icon {
-    height: 7%;
-    width: 7%;
+    height: 100px;
+    width: 100px;
     margin-right: 1%;
+}
+
+.deck-cards-count {
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+.clock-icon {
+    height: 100px;
+    width: 100px;
+    margin-right: 1%;
+}
+
+.game-time {
+    margin-top: 7%;    
 }

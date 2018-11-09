@@ -5,4 +5,5 @@ export class Card {
     amount: number;
 
     isSelected: boolean;
+    isHighlighted: boolean;
 }

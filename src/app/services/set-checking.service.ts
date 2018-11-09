@@ -27,7 +27,7 @@ export class SetCheckingService {
 			currentCards.push(cards[i]);
 			if (currentCards.length == amountOfCardsPerSet) {
 				if (this.isSet(currentCards)) {
-					availableSets = availableSets.concat(currentCards);
+					availableSets.push(currentCards.slice());
 				}
 			}
 			else {

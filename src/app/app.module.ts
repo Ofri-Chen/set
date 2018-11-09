@@ -11,7 +11,6 @@ import { HttpClient } from '@angular/common/http';
 import { CardImageResolverService } from './services/card-image-resolver.service';
 import { SetCheckingService } from './services/set-checking.service';
 import { GameComponent } from './components/game/game.component';
-import { StopwatchComponent } from './components/stopwatch/stopwatch.component';
 import { TimePipe } from './pipes/time.pipe';
 
 
@@ -20,7 +19,6 @@ import { TimePipe } from './pipes/time.pipe';
     AppComponent,
     BoardComponent,
     GameComponent,
-    StopwatchComponent,
     TimePipe
   ],
   imports: [
