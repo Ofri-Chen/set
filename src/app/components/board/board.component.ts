@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Card } from '../../../models/card';
+import { Card } from '../../../card';
 import { CardsService } from '../../services/cards.service';
 import { ConfigService } from '../../services/config.service';
 import { IGameConfig } from '../../../models/IConfig';
