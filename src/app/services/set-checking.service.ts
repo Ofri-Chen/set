@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Card } from '../../models/card';
+import { ConfigService } from './config.service';
 
 @Injectable()
 export class SetCheckingService {
 	count: number = 0;
 
-	constructor() { }
+	constructor(private configService: ConfigService) { }
 
 	public isSet(cards: Card[]): boolean {
 		let properties = ['color', 'filling', 'type', 'amount'];
 		return properties.every(prop => this.isPropertySet(cards, prop));
 	}
 
+	counter = 0;
+
 	public getAvailableSets(cards: Card[], amountOfCardsPerSet: number): Card[][] {
-		return this.recursiveSetChecker(cards, [], amountOfCardsPerSet, 0);
+		this.counter++;
+		return this.counter <= 1 ? [] :
+		 this.recursiveSetChecker(cards, [], amountOfCardsPerSet, 0);
 	}
 
 	public recursiveSetChecker(cards: Card[], currentCards: Card[],
 		amountOfCardsPerSet: number, startingIndex: number): Card[][] {
-		let availableSets: Card[][] = [];
+		let availableSets = [];
 		let numOfIterations = cards.length - amountOfCardsPerSet + currentCards.length + 1;
 		for (let i = startingIndex; i < numOfIterations; i++) {
 			currentCards.push(cards[i]);
@@ -28,7 +33,8 @@ export class SetCheckingService {
 				}
 			}
 			else {
-				this.recursiveSetChecker(cards, currentCards, amountOfCardsPerSet, i + 1);
+				let sets = this.recursiveSetChecker(cards, currentCards, amountOfCardsPerSet, i + 1);
+				availableSets = availableSets.concat(sets);
 			}
 
 			currentCards.pop();

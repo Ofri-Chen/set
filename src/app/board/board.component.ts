@@ -17,7 +17,7 @@ export class BoardComponent implements OnInit {
 	boardCards: Card[] = [];
 	selectedCards: Card[] = [];
 	score: number = 0;
-
+	isGameEnded: boolean;
 
 	constructor(private cardsService: CardsService,
 		private configService: ConfigService,
@@ -29,6 +29,7 @@ export class BoardComponent implements OnInit {
 	ngOnInit() {
 		this.deck = this.cardsService.generateDeck();
 		this.boardCards = this.deck.splice(0, this.gameConfig.startingCards);
+		this.manageSetsAvailability();
 	}
 
 	getCardImageUrl(card: Card) {
@@ -49,7 +50,6 @@ export class BoardComponent implements OnInit {
 				.filter(selectedCard => selectedCard !== card);
 		}
 
-		console.log(this.selectedCards.length);
 	}
 
 	handleSetSelection() {
@@ -66,6 +66,7 @@ export class BoardComponent implements OnInit {
 			})
 
 			this.score++;
+			this.manageSetsAvailability();
 			this.selectedCards = [];
 		}
 	}
@@ -78,6 +79,22 @@ export class BoardComponent implements OnInit {
 	swapCardOnBoard(oldCard: Card, newCard: Card) {
 		let index = this.boardCards.findIndex(card => card === oldCard);
 		this.boardCards.splice(index, 1, newCard);
+	}
+
+	manageSetsAvailability() {
+		let availableSets = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet);
+		while (!availableSets.length) {
+			if (this.deck.length) {
+				let cardsToAdd = this.deck.splice(0, this.gameConfig.cardsPerSet);
+				this.boardCards = this.boardCards.concat(cardsToAdd);
+				availableSets = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet);
+			}
+			else {
+				this.isGameEnded = true;
+				alert(`game ended, sets: ${this.score}`);
+				break;
+			}
+		}
 	}
 
 	checkSets() {
