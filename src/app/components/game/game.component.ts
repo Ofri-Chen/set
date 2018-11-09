@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 	isGameBeingPlayed: boolean = false;
-	previousGameTime: number;
+	previousGameTime: number = 3720;
 	constructor() { }
 
 	ngOnInit() {

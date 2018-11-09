@@ -1,0 +1,11 @@
+.start-game-button {
+    height: 100px;
+    width: 14%;
+    margin-left: 43%;
+}
+
+.prev-game-time {
+    font-size: 400%;
+    margin-top: 5%;
+    text-align: center;
+}

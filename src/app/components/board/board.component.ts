@@ -18,6 +18,7 @@ export class BoardComponent implements OnInit {
 	selectedCards: Card[] = [];
 	score: number = 0;
 	seconds: number = 0;
+	isSetBeingHighlighted: boolean;
 
 	@Output('gameEnded') gameEndedEventEmitter = new EventEmitter();
 
@@ -70,7 +71,7 @@ export class BoardComponent implements OnInit {
 		if (!this.deck.length) {
 			this.endGame();
 		}
-		
+
 		if (this.boardCards.length == this.gameConfig.startingCards) {
 			this.selectedCards.forEach(setCard => {
 				let newCard: Card = this.deck.splice(0, 1)[0];
@@ -91,6 +92,7 @@ export class BoardComponent implements OnInit {
 
 	clearAllHighlights() {
 		this.boardCards.forEach(card => card.isHighlighted = false);
+		this.isSetBeingHighlighted = false;
 	}
 
 	handleUnsuccessfulSet() {
@@ -103,11 +105,16 @@ export class BoardComponent implements OnInit {
 	}
 
 	showSet() {
-		let availableSet = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet)[0];
-		availableSet.forEach(card => {
-			card.isSelected = false;
-			card.isHighlighted = true;
-		});
+		if (!this.isSetBeingHighlighted) {
+			let availableSet = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet)[0];
+			availableSet.forEach(card => {
+				card.isSelected = false;
+				card.isHighlighted = true;
+			});
+			
+			this.isSetBeingHighlighted = true;
+			this.seconds += 20;
+		}
 	}
 
 	manageSetsAvailability() {

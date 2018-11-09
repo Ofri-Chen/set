@@ -10,10 +10,12 @@
 </div>
 
 <div class="cards-container">
-  <img *ngFor="let card of boardCards" class="card" [src]="getCardImageUrl(card)" 
-  [class.selected]="card.isSelected" [class.highlighted]="card.isHighlighted" (click)="handleCardClick(card)">
+  <img *ngFor="let card of boardCards" class="card" [src]="getCardImageUrl(card)" [class.selected]="card.isSelected" [class.highlighted]="card.isHighlighted"
+    (click)="handleCardClick(card)">
 </div>
 
-<button (click)="checkSets()">Check</button>
-<button (click)="showSet()">Show Set</button>
-<button (click)="endGame()">End Game</button>
+<!-- <button (click)="checkSets()">Check</button> -->
+<div class="action-buttons-container">
+  <button (click)="showSet()" class="show-set-button action-btn">Show Set</button>
+  <button (click)="endGame()" class="action-btn">End Game</button>
+</div>
