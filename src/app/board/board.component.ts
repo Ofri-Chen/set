@@ -56,24 +56,35 @@ export class BoardComponent implements OnInit {
 		this.setCheckingService.isSet(this.selectedCards)
 			? this.handleSuccessfulSet()
 			: this.handleUnsuccessfulSet();
+
+		this.selectedCards = [];
 	}
 
 	handleSuccessfulSet() {
-		if (this.deck.length) {
-			this.selectedCards.forEach(setCard => {
-				let newCard: Card = this.deck.splice(0, 1)[0];
-				this.swapCardOnBoard(setCard, newCard);
-			})
+		this.score++;
 
-			this.score++;
-			this.manageSetsAvailability();
-			this.selectedCards = [];
+		if (this.boardCards.length == this.gameConfig.startingCards) {
+			if (this.deck.length) {
+				this.selectedCards.forEach(setCard => {
+					let newCard: Card = this.deck.splice(0, 1)[0];
+					this.swapCardOnBoard(setCard, newCard);
+				});
+			}
 		}
+
+		else {
+			this.selectedCards.forEach(setCard => {
+				let index = this.boardCards.findIndex(card => card === setCard);
+				this.boardCards.splice(index, 1);
+			});
+		}
+
+		this.manageSetsAvailability();
+		this.selectedCards = [];
 	}
 
 	handleUnsuccessfulSet() {
 		this.selectedCards.forEach(card => card.isSelected = false);
-		this.selectedCards = [];
 	}
 
 	swapCardOnBoard(oldCard: Card, newCard: Card) {
