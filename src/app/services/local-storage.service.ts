@@ -5,7 +5,7 @@ export class LocalStorageService {
 	highScoreKey = 'highScore';
 	constructor() { }
 
-	public saveHighScore(seconds: number) {
+	public setHighScore(seconds: number) {
 		localStorage.setItem(this.highScoreKey, seconds.toString());
 	}
 
