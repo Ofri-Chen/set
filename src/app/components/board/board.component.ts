@@ -16,7 +16,6 @@ export class BoardComponent implements OnInit {
 	deck: Card[] = [];
 	boardCards: Card[] = [];
 	selectedCards: Card[] = [];
-	score: number = 0;
 	seconds: number = 0;
 	isSetBeingHighlighted: boolean;
 
@@ -65,13 +64,8 @@ export class BoardComponent implements OnInit {
 	}
 
 	handleSuccessfulSet() {
-		this.score++;
 		this.clearAllHighlights();
 		
-		if (!this.deck.length) {
-			this.endGame();
-		}
-
 		if (this.boardCards.length == this.gameConfig.startingCards) {
 			this.selectedCards.forEach(setCard => {
 				let newCard: Card = this.deck.splice(0, 1)[0];
@@ -133,7 +127,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	endGame() {
-		this.gameEndedEventEmitter.emit();
+		this.gameEndedEventEmitter.emit(this.seconds);
 	}
 
 	checkSets() {

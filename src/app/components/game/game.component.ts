@@ -18,6 +18,7 @@ export class GameComponent implements OnInit {
 	}
 
 	gameEnded(gameTime) {
+		this.previousGameTime = gameTime;
 		this.isGameBeingPlayed = false;
 	}
 }
