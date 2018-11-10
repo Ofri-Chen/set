@@ -53,13 +53,10 @@
 .action-buttons-container {
     display: flex;
     margin-top: 3%;
+    justify-content: space-between;
 }
 
 .action-btn { 
     width: 48%; 
     height: 50px;
-} 
-
-.show-set-button {
-    margin-right: 4%;
 }

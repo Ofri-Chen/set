@@ -19,13 +19,13 @@ export class BoardComponent implements OnInit {
 	seconds: number = 0;
 	isSetBeingHighlighted: boolean;
 
-	@Output('gameEnded') gameEndedEventEmitter = new EventEmitter();
+	@Output('gameEnded') gameEndedEventEmitter = new EventEmitter<number>();
 
 	constructor(private cardsService: CardsService,
 		private configService: ConfigService,
 		private cardImageResolverService: CardImageResolverService,
 		private setCheckingService: SetCheckingService) {
-			this.gameConfig = configService.config.game;
+		this.gameConfig = configService.config.game;
 	}
 
 	ngOnInit() {
@@ -71,8 +71,8 @@ export class BoardComponent implements OnInit {
 
 	handleSuccessfulSet() {
 		this.clearAllHighlights();
-		
-		if (this.boardCards.length == this.gameConfig.startingCards) {
+
+		if (this.boardCards.length == this.gameConfig.startingCards && this.deck.length) {
 			this.selectedCards.forEach(setCard => {
 				let newCard: Card = this.deck.splice(0, 1)[0];
 				this.swapCardOnBoard(setCard, newCard);
@@ -80,14 +80,18 @@ export class BoardComponent implements OnInit {
 		}
 
 		else {
-			this.selectedCards.forEach(setCard => {
-				let index = this.boardCards.findIndex(card => card === setCard);
-				this.boardCards.splice(index, 1);
-			});
+			this.removeSelectedCardsFromBoard();
 		}
 
 		this.manageSetsAvailability();
 		this.selectedCards = [];
+	}
+
+	removeSelectedCardsFromBoard() {
+		this.selectedCards.forEach(setCard => {
+			let index = this.boardCards.findIndex(card => card === setCard);
+			this.boardCards.splice(index, 1);
+		});
 	}
 
 	clearAllHighlights() {
@@ -111,7 +115,7 @@ export class BoardComponent implements OnInit {
 				card.isSelected = false;
 				card.isHighlighted = true;
 			});
-			
+
 			this.isSetBeingHighlighted = true;
 			this.seconds += 20;
 		}
@@ -138,6 +142,19 @@ export class BoardComponent implements OnInit {
 
 	endGame() {
 		this.gameEndedEventEmitter.emit(this.seconds);
+	}
+
+	cheat() {
+		while (this.deck.length) {
+			let availableSet = this.setCheckingService.getAvailableSets(this.boardCards, this.gameConfig.cardsPerSet)[0];
+			availableSet.forEach(card => {
+				this.selectedCards.push(card);
+				card.isSelected = true;
+				card.isHighlighted = false;
+			});
+
+			this.handleSetSelection();			
+		}
 	}
 
 	checkSets() {
