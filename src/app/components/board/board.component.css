@@ -2,11 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin-left: 1%;
+    /* margin-left: 1%; */
 }
 
 .card {
-    width: 31%;
+    width: 30%;
     height: 65px;
     border: solid 5px;
     margin: 0.5%;
