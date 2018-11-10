@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 95%;
-    margin-left: 9%;
+    margin-left: 8%;
 }
 
 .card {
@@ -17,7 +17,7 @@
 }
 
 .highlighted {
-    border-color: green;
+    border-color: blue;
 }
 
 .game-info {
