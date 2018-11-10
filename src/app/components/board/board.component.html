@@ -4,7 +4,6 @@
     <div class="deck-cards-count">{{deck.length}}</div>
   </div>
   <div class="time-container">
-    <img src="assets/clock-icon.png" class="clock-icon">
     <div class="game-time">{{seconds | time}}</div>
   </div>
 </div>
@@ -14,7 +13,6 @@
     (click)="handleCardClick(card)">
 </div>
 
-<!-- <button (click)="checkSets()">Check</button> -->
 <div class="action-buttons-container">
   <button (click)="showSet()" class="show-set-button action-btn">Show Set</button>
   <button (click)="endGame()" class="action-btn">End Game</button>

@@ -22,7 +22,7 @@
 
 .game-info {
     display: flex;
-    font-size: 300%;
+    font-size: 250%;
 }
 
 .cards-count-container {
@@ -36,30 +36,24 @@
 }
 
 .deck-icon {
-    height: 100px;
-    width: 100px;
+    height: 70%;
+    width: 25%;
     margin-right: 1%;
 }
 
 .deck-cards-count {
-    margin-top: 10%;
     margin-left: 5%;
 }
 
 .clock-icon {
-    height: 100px;
-    width: 100px;
+    height: 60%;
+    width: 13%;
     margin-right: 1%;
-}
-
-.game-time {
-    margin-top: 7%;    
 }
 
 .action-buttons-container {
     display: flex;
 }
-
 
 .action-btn { 
     width: 48%; 
