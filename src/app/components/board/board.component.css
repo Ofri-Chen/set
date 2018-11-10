@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 95%;
-    margin-left: 12%;
+    margin-left: 10%;
 }
 
 .card {
@@ -28,8 +28,6 @@
 
 .cards-count-container {
     display: flex;
-    /* margin-left: 15%; */
-    /* margin-right: 13%; */
 }
 
 .time-container {
