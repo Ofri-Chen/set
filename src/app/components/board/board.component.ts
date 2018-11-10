@@ -25,15 +25,21 @@ export class BoardComponent implements OnInit {
 		private configService: ConfigService,
 		private cardImageResolverService: CardImageResolverService,
 		private setCheckingService: SetCheckingService) {
-		this.gameConfig = configService.config.game;
+			this.gameConfig = configService.config.game;
 	}
 
 	ngOnInit() {
+		this.init();
+		setInterval(() => this.seconds += 1, 1000);
+	}
+
+	init() {
 		this.deck = this.cardsService.generateDeck();
 		this.boardCards = this.deck.splice(0, this.gameConfig.startingCards);
 		this.manageSetsAvailability();
-		setInterval(() => this.seconds += 1, 1000);
-
+		this.seconds = 0;
+		this.isSetBeingHighlighted = false;
+		this.selectedCards = [];
 	}
 
 	getCardImageUrl(card: Card) {
@@ -124,6 +130,10 @@ export class BoardComponent implements OnInit {
 				break;
 			}
 		}
+	}
+
+	restart() {
+		this.init();
 	}
 
 	endGame() {

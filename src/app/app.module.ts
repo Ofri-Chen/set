@@ -12,6 +12,7 @@ import { CardImageResolverService } from './services/card-image-resolver.service
 import { SetCheckingService } from './services/set-checking.service';
 import { GameComponent } from './components/game/game.component';
 import { TimePipe } from './pipes/time.pipe';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { TimePipe } from './pipes/time.pipe';
     CardImageResolverService,
     SetCheckingService,
     ConfigService,
+    LocalStorageService,
     {
       provide: APP_INITIALIZER,
       useFactory: loadConfig,

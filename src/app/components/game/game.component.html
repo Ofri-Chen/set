@@ -1,3 +1,4 @@
 <button (click)="startGame()" *ngIf="!isGameBeingPlayed" class="start-game-button">Start Game</button>
-<div *ngIf="!isGameBeingPlayed && previousGameTime" class="prev-game-time">{{previousGameTime | time}}</div>
+<div *ngIf="!isGameBeingPlayed && previousGameTime" class="prev-game-time game-time">{{previousGameTime | time}}</div>
+<div class="high-score game-time" *ngIf="!isGameBeingPlayed && highScore">Best: {{highScore | time}}</div>
 <app-board *ngIf="isGameBeingPlayed" (gameEnded)="gameEnded()"></app-board>

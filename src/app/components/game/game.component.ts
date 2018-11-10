@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
 	selector: 'app-game',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class GameComponent implements OnInit {
 	isGameBeingPlayed: boolean = false;
 	previousGameTime: number;
-	constructor() { }
+	highScore: number;
+	constructor(private localStorageService: LocalStorageService) { }
 
 	ngOnInit() {
+		this.highScore = this.localStorageService.getHighScore();
 	}
 
 	startGame() {
@@ -20,5 +23,12 @@ export class GameComponent implements OnInit {
 	gameEnded(gameTime) {
 		this.previousGameTime = gameTime;
 		this.isGameBeingPlayed = false;
+	}
+
+	manageHighScore() {
+		let currentHighScore = this.localStorageService.getHighScore();
+		if (!currentHighScore || currentHighScore > this.previousGameTime) {
+			this.localStorageService.setHighScore(this.previousGameTime);
+		}
 	}
 }
