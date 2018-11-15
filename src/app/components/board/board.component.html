@@ -19,3 +19,9 @@
   <button (click)="restart()" class="action-btn">Restart</button>
   <!-- <button (click)="cheat()" class="action-btn">Cheat</button> -->
 </div>
+
+<ul hidden>
+  <li *ngFor="let card of deck">
+    <img [src]="getCardImageUrl(card)">
+  </li>
+</ul>
